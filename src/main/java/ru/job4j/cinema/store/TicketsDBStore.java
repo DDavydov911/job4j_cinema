@@ -62,18 +62,34 @@ public class TicketsDBStore {
         return tickets;
     }
 
+    public List<Ticket> findTicketsBySessionId(int id) {
+        List<Ticket> tickets = new ArrayList<>();
+        try (Connection connection = pool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     "SELECT * FROM tickets WHERE id = ? ORDER BY id"
+             )) {
+            ps.setInt(1, id);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                while (resultSet.next()) {
+                    tickets.add(createTicketFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tickets;
+    }
+
     private Ticket createTicketFromResultSet(ResultSet resultSet)
             throws SQLException {
-        Ticket ticket = null;
+        Ticket ticket;
         ticket = new Ticket(
                 resultSet.getInt("session_id"),
                 resultSet.getInt("row"),
                 resultSet.getInt("cell"),
                 resultSet.getInt("userId")
         );
-        if (ticket != null) {
-            ticket.setId(resultSet.getInt("id"));
-        }
+        ticket.setId(resultSet.getInt("id"));
         return ticket;
     }
 }

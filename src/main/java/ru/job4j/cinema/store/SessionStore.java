@@ -14,9 +14,9 @@ public class SessionStore {
     private final Map<Integer, Session> sessions = new ConcurrentHashMap();
 
     public SessionStore() {
-        sessions.put(1, new Session("1 + 1"));
-        sessions.put(2, new Session("Last from Mohegans"));
-        sessions.put(3, new Session("Great Seven"));
+        sessions.put(1, new Session(1, "1 + 1"));
+        sessions.put(2, new Session(2, "Last from Mohegans"));
+        sessions.put(3, new Session(3, "Great Seven"));
     }
 
     public List<Session> findAll() {
@@ -26,7 +26,11 @@ public class SessionStore {
     public static void main(String[] args) {
         SessionStore sessionStore = new SessionStore();
         for (Session session : sessionStore.findAll()) {
-            System.out.println(session.getName());
+            System.out.println(session.getId() + " " + session.getName());
         }
+    }
+
+    public Session findById(int id) {
+        return sessions.get(id);
     }
 }

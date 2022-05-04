@@ -1,10 +1,15 @@
 package ru.job4j.cinema.model;
 
 public class Session {
-    int id;
-    String name;
+    private int id;
+    private String name;
 
     public Session(String name) {
+        this.name = name;
+    }
+
+    public Session(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 

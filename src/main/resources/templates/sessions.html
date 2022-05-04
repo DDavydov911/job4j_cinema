@@ -53,37 +53,20 @@
                 Бронирование билетов в кино.
             </div>
             <div class="card-body">
-                <form th:action="@{/sessions}" method="POST" enctype="multipart/form-data">
+                <form th:action="@{/setRows}" method="POST">
                     <h2>Test form</h2>
+                    <input type="hidden" name="id" value="0"/>
                     <div class="form-group">
-                        <label for="session.id">Выберите сеанс</label>
-                        <select class="form-control" id="session.id" name="session.id">
-                            <option th:each="session : ${sessions}" th:value="${session.id}"
-                                    th:text="${session.name}"></option>
+                        <label for="session.id">Выберите киносеанс</label>
+                        <select class="form-control" id="session.id" name="sessionId">
+                            <option th:each="sessio : ${sessions}" th:value="${sessio.id}"
+                                     th:text="${sessio.name}"></option>
                         </select>
                     </div>
-
-                    <!--                    <div class="form-group" th:if="${session != null}">-->
-                    <!--                        <label for="row">Выберите ряд</label>-->
-                    <!--                        <select class="form-control" id="row" name="row">-->
-                    <!--                            <option th:each="row : ${rows}" th:value="${row}" th:text="Ряд ${row}"></option>-->
-                    <!--                        </select>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="form-group">-->
-                    <!--                        <label for="cell">Выберите место</label>-->
-                    <!--                        <select class="form-control" id="cell" name="cell">-->
-                    <!--                            <option th:each="session : ${cells}" th:value="${cell}" th:text="Место ${cell}"></option>-->
-                    <!--                        </select>-->
-                    <!--                    </div>-->
-
-
-                    <!--                    <div class="form-group">-->
-                    <!--                        <label for="city.id">Город</label>-->
-                    <!--                        <select class="form-control" id="city.id" name="city.id">-->
-                    <!--                            <option th:each="city : ${cities}" th:value="${city.id}" th:text="${city.name}"></option>-->
-                    <!--                        </select>-->
-                    <!--                    </div>-->
-                    <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
+                    <input type="hidden" name="row" value="0"/>
+                    <input type="hidden" name="cell" value="0"/>
+                    <input type="hidden" name="userId" value="0"/>
+                    <button type="submit" class="btn btn-primary mt-3">Выбрать киносеанс</button>
                 </form>
             </div>
         </div>

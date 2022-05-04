@@ -7,6 +7,7 @@ import ru.job4j.cinema.service.SessionService;
 
 @Controller
 public class SessionController {
+
     private final SessionService sessionService;
 
     public SessionController(SessionService sessionService) {
@@ -14,8 +15,9 @@ public class SessionController {
     }
 
     @GetMapping("/sessions")
-    public String sessions(Model model) {
+    public String getSessions(Model model) {
         model.addAttribute("sessions", sessionService.findAllSessions());
         return "sessions";
     }
 }
+
