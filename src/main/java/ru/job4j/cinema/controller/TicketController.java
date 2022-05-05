@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.cinema.model.Ticket;
+import ru.job4j.cinema.model.User;
 import ru.job4j.cinema.service.TicketService;
 
 @Controller
@@ -14,11 +15,22 @@ public class TicketController {
     public TicketController(TicketService ticketService) {
         this.ticketService = ticketService;
     }
+/*
+    private void printTicket(Ticket ticket) {
+        System.out.println("id: " + ticket.getId() + " "
+                + "sessionId " + ticket.getSessionId() + " "
+                + "row: " + ticket.getRow() + " "
+                + "cell: " + ticket.getCell() + " "
+                + "userId: " + ticket.getUserId());
+    }
+
+ */
 
     @PostMapping("/setRows")
     public String setSessions(@ModelAttribute Ticket ticket,
                               Model model) {
         model.addAttribute("ticket", ticket);
+        /*printTicket(ticket);*/
         model.addAttribute("rows", ticketService.getAvailableRows(
                 ticket.getSessionId())
         );
@@ -36,12 +48,10 @@ public class TicketController {
     }
 
     @PostMapping("/finish")
-    public String finish(@ModelAttribute Ticket ticket,
-                         Model model) {
-        ticket.setId(0);
-        System.out.println(ticket.getId());
-        ticketService.bookTicket(ticket);
-        model.addAttribute("ticket", ticket);
+    public String finish(@ModelAttribute Ticket ticket) {
+        /*System.out.println(ticket.getId());*/
+        Ticket ticketWithId = ticketService.bookTicket(ticket);
+        /*System.out.println(ticketWithId.getId());*/
         if (ticket.getId() != 0) {
             return "finishOk";
         }
@@ -49,7 +59,7 @@ public class TicketController {
     }
 
     @GetMapping("/finish")
-    public String finish(Model model) {
+    public String finish() {
         return "finishOk";
     }
 }

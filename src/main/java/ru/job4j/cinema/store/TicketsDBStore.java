@@ -66,7 +66,7 @@ public class TicketsDBStore {
         List<Ticket> tickets = new ArrayList<>();
         try (Connection connection = pool.getConnection();
              PreparedStatement ps = connection.prepareStatement(
-                     "SELECT * FROM tickets WHERE id = ? ORDER BY id"
+                     "SELECT * FROM tickets WHERE session_id = ? ORDER BY id"
              )) {
             ps.setInt(1, id);
             try (ResultSet resultSet = ps.executeQuery()) {
@@ -87,7 +87,7 @@ public class TicketsDBStore {
                 resultSet.getInt("session_id"),
                 resultSet.getInt("row"),
                 resultSet.getInt("cell"),
-                resultSet.getInt("userId")
+                resultSet.getInt("user_id")
         );
         ticket.setId(resultSet.getInt("id"));
         return ticket;

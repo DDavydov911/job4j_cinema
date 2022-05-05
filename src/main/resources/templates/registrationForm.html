@@ -26,11 +26,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-item nav-link" th:href="@{/index}">Главная</a>
-                <a class="nav-item nav-link" th:href="@{/posts}">Вакансии</a>
-                <a class="nav-item nav-link" th:href="@{/addPost}">Добавить вакансию</a>
-                <a class="nav-item nav-link" th:href="@{/candidates}">Кандидаты</a>
-                <a class="nav-item nav-link active" href="#">Новый кандидат<span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" th:href="@{/sessions}">Главная</a>
                 <a class="nav-item nav-link" th:if="${user.name == 'Гость'}" th:href="@{/loginPage}">
                     <span th:text="${user.name}"></span>
                     <span> | Войти</span>
@@ -48,7 +44,7 @@
                 Регистрация в кинотеатре.
             </div>
             <div class="card-body">
-                <form th:action="@{/createUser}" method="POST" enctype="multipart/form-data">
+                <form th:action="@{/createUser}" method="POST">
                     <input type="hidden" name="id" value="0"/>
                     <div class="form-group">
                         <label for="username">Имя</label>
@@ -59,8 +55,12 @@
                         <input type="text" class="form-control" name="email" id="email">
                     </div>
                     <div>
-                        <label for="phone">Описание</label>
+                        <label for="phone">Номер телефона</label>
                         <input type="text" class="form-control" name="phone" id="phone">
+                    </div>
+                    <div>
+                        <label for="pass">Пароль</label>
+                        <input type="text" class="form-control" name="password" id="pass">
                     </div>
                     <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
                 </form>

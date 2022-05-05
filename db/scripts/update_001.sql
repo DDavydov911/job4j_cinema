@@ -3,6 +3,7 @@ CREATE TABLE users (
     username VARCHAR NOT NULL,
     email VARCHAR NOT NULL UNIQUE,
     phone VARCHAR NOT NULL UNIQUE
+    password VARCHAR NOT NULL;
 );
 
 CREATE TABLE sessions (

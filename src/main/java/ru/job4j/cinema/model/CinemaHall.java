@@ -13,8 +13,8 @@ public class CinemaHall {
 
 
     public CinemaHall() {
-        this.rows = 12;
-        this.cells = 12;
+        this.rows = 4;
+        this.cells = 4;
     }
 
     public int getRows() {
