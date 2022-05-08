@@ -29,7 +29,6 @@
             </div>
             <div class="card-body">
                 <form th:object="${ticket}" th:action="@{/finish}" method="POST">
-                    <h2>Test form</h2>
                     <input type="hidden" name="sessionId" th:field="*{sessionId}"/>
                     <input type="hidden" name="row" th:field="*{row}"/>
                     <div class="form-group">

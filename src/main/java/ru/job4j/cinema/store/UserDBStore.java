@@ -1,6 +1,7 @@
 package ru.job4j.cinema.store;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.stereotype.Repository;
 import ru.job4j.cinema.model.User;
 
 import java.sql.Connection;
@@ -9,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
+@Repository
 public class UserDBStore {
 
     private final BasicDataSource pool;
@@ -20,12 +22,13 @@ public class UserDBStore {
     public Optional<User> add(User user) {
         try (Connection connection = pool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     "INSERT INTO users(username, email, password) VALUES (?, ?, ?)",
+                     "INSERT INTO users(username, email, phone, password) VALUES (?, ?, ?, ?)",
                      PreparedStatement.RETURN_GENERATED_KEYS
              )) {
-            preparedStatement.setString(1, user.getEmail());
+            preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setString(3, user.getPhone());
+            preparedStatement.setString(4, user.getPassword());
             preparedStatement.execute();
             try (ResultSet id = preparedStatement.getGeneratedKeys()) {
                 if (id.next()) {
