@@ -17,6 +17,6 @@ CREATE TABLE IF NOT EXISTS tickets (
     row INTEGER NOT NULL,
     cell INTEGER NOT NULL,
     user_id INTEGER NOT NULL REFERENCES users(id),
-    UNIQUE (session_id, row, cell);
+    UNIQUE (session_id, row, cell)
 );
 
