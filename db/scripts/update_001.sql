@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS tickets (
     session_id INTEGER NOT NULL REFERENCES sessions(id),
     row INTEGER NOT NULL,
     cell INTEGER NOT NULL,
-    user_id INTEGER NOT NULL REFERENCES users(id)
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    UNIQUE (session_id, row, cell);
 );
-Create CONSTRAINT valid_seat UNIQUE (session_id, row, cell);
 
