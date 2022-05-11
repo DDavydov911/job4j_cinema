@@ -1,21 +1,22 @@
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR NOT NULL,
-    email VARCHAR NOT NULL UNIQUE,
-    phone VARCHAR NOT NULL UNIQUE
-    password VARCHAR NOT NULL;
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE sessions (
+CREATE TABLE IF NOT EXISTS sessions (
     id SERIAL PRIMARY KEY,
-    name text
+    name VARCHAR(255)
 );
 
-CREATE TABLE tickets (
+CREATE TABLE IF NOT EXISTS tickets (
     id SERIAL PRIMARY KEY,
-    session_id INT NOT NULL REFERENCES sessions(id),
-    row INT NOT NULL,
-    cell INT NOT NULL,
-    user_id INT NOT NULL REFERENCES users(id),
-    CONSTRAINT valid_seat UNIQUE (session _id, row, cell)
+    session_id INTEGER NOT NULL REFERENCES sessions(id),
+    row INTEGER NOT NULL,
+    cell INTEGER NOT NULL,
+    user_id INTEGER NOT NULL REFERENCES users(id)
 );
+Create CONSTRAINT valid_seat UNIQUE (session_id, row, cell);
+
