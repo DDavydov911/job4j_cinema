@@ -9,7 +9,7 @@ INSERT INTO users(username, email, phone, password) VALUES('Dasha', '223@mail.co
 INSERT INTO users(username, email, phone, password) VALUES('Masha', '323@mail.com', '32345678', '323');
 INSERT INTO users(username, email, phone, password) VALUES('Gosha', '423@mail.com', '42345678', '423');
 
-INSERT INTO tickets(session_id, row, cell, user_id)
+INSERT INTO tickets(session_id, `row`, cell, user_id)
 VALUES
        (1, 1, 1, 1),
        (1, 1, 2, 2),
